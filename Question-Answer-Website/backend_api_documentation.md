@@ -322,7 +322,7 @@ We will be utilising the URL based Versioning i.e we will use the version number
 	"data": {
 		"message": {
 			"heading": "Simple & transparent pricing",
-			"bottom": "15-Days, No Questions Asked, Full Money-Back uarantee. (Valid only for he Content Subscription)"
+			"bottom": "15-Days, No Questions Asked, Full Money-Back guarantee. (Valid only for the Content Subscription)"
 		},
 		"pricing": [{
 				"product": "test",
@@ -331,7 +331,7 @@ We will be utilising the URL based Versioning i.e we will use the version number
 					"name": "Test",
 					"description": "Includes 4 sample papers and 5 Topic Notes",
 					"price": 550,
-					"offer": {
+					"offer": { // This will be the empty if there is no offer
 						"price": 450,
 						"validity_date": "21/7/2017",
 						"text": "Early bird discount till"
@@ -382,7 +382,7 @@ We will be utilising the URL based Versioning i.e we will use the version number
 							"package_id": 12
 						}
 					],
-					"button_tex": "Buy Now",
+					"button_text": "Buy Now",
 					"features": [{
 							"image_url": "https://www.facebook.com/img/123",
 							"status": true,
@@ -436,7 +436,7 @@ We will be utilising the URL based Versioning i.e we will use the version number
 							"package_id": 12
 						}
 					],
-					"button_tex": "Buy Now",
+					"button_text": "Buy Now",
 					"features": [{
 						"image_url": "https://www.facebook.com/img/123",
 						"status": true,
@@ -641,7 +641,8 @@ We will be utilising the URL based Versioning i.e we will use the version number
   "full_name": "Nimesh Kiran Verma",
   "mobile_number":"9911616971",
   "email":"nimesh.aug11@gmail.com",
-  "city_id":1,
+  "city_id":1, // This we be empty if the city_id is not chosen from the list 
+  "city_name": "Mumbai", 
   "class_id":1,
   "school":"St Xaviers Sr Sec School",
   "password":"password123"
