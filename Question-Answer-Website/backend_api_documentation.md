@@ -324,8 +324,8 @@ We will be utilising the URL based Versioning i.e we will use the version number
 			"heading": "Simple & transparent pricing",
 			"bottom": "15-Days, No Questions Asked, Full Money-Back uarantee. (Valid only for he Content Subscription)"
 		},
-		"pricing": {
-			"test": {
+		"pricing": [{
+				"id": "test",
 				"image_url": "https://www.facebook.com/img/123",
 				"name": "Test",
 				"description": "Includes 4 sample papers and 5 Topic Notes",
@@ -358,7 +358,8 @@ We will be utilising the URL based Versioning i.e we will use the version number
 					}
 				]
 			},
-			"content": {
+			{
+				"id": "content",
 				"image_url": "https://www.facebook.com/img/123",
 				"name": "Content",
 				"description": "dcdsc svfv",
@@ -379,9 +380,6 @@ We will be utilising the URL based Versioning i.e we will use the version number
 					}
 				],
 				"button_tex": "Buy Now",
-				"city_id_list": [
-
-				],
 				"features": [{
 						"image_url": "https://www.facebook.com/img/123",
 						"status": true,
@@ -404,15 +402,35 @@ We will be utilising the URL based Versioning i.e we will use the version number
 					}
 				]
 			},
-			"test_and_content": {
+			{
+				"id": "test_and_content",
 				"image_url": "https://www.facebook.com/img/123",
 				"name": "Content and Test",
 				"description": "ddwwdwdsa edewsds ",
-				"discount": { 
-						"percentage": 10,
-						"validity_date": "21/7/2017",
-						"text": "10% Off",
+				"discount": {
+					"percentage": 10,
+					"validity_date": "21/7/2017",
+					"text": "10% Off"
 				},
+				"price": [{
+						"period": "3 months",
+						"price": 1350,
+						"discounted_price": 1215,
+						"package_id": 12
+					},
+					{
+						"period": "6 months",
+						"price": 1850,
+						"discounted_price": 1665,
+						"package_id": 12
+					},
+					{
+						"period": "1 year",
+						"price": 2650,
+						"discounted_price": 2385,
+						"package_id": 12
+					}
+				],
 				"button_tex": "Buy Now",
 				"features": [{
 					"image_url": "https://www.facebook.com/img/123",
@@ -420,7 +438,7 @@ We will be utilising the URL based Versioning i.e we will use the version number
 					"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
 				}]
 			}
-		}
+		]
 	}
 }
 ```
