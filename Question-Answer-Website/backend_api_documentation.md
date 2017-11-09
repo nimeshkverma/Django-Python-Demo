@@ -1384,6 +1384,7 @@ Remark: If the customer has enrolled through the school the **amount** will be t
 {
   "meta": "",
   "data": {
+    "discount": 200,
     "is_coupon_valid": true or false,
     "coupon_deductable": 200,
     "wallet_deductable": 200,
