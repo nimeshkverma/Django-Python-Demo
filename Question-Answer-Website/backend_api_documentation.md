@@ -1095,7 +1095,7 @@ If the user email and token are not correct
 16.
 	- API Name: Order API
 	- Status: Need to be discuss URL
-	- URL: /user/123/orders/
+	- URL: /user/123/orders/history
 	- Comment: This  belong to module User or a seperate Module Order?
 	- Module: Order
 	- Method: POST
@@ -1218,10 +1218,7 @@ Remark: If the customer has enrolled through the school the **amount** will be t
 {
   "meta": "",
   "data": {
-    "wallet":{
-        "balance":900,
-        "spendable":400,
-    },
+    "wallet_balance":900,
     "city_id": 1,
     "products": {
       "test": [
@@ -1329,10 +1326,7 @@ Remark: If the customer has enrolled through the school the **amount** will be t
 {
   "package_ids": [
   23,
-  24
-  ],
-//  "test": true,
-//  "content": true
+  24],
 }
 ```
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
@@ -1340,7 +1334,13 @@ Remark: If the customer has enrolled through the school the **amount** will be t
 {
   "meta": "",
   "data": {
-    "discount":200,
+    "order_id": 123,
+    "wallet_balance": 200,
+    "wallet_deductable": 200,
+    "discount": 200,
+    "price": 1450,
+    "payable_price": 1250,
+    "final_price": 1250,
     "package_data": [
       {
         "id": 23,
@@ -1366,17 +1366,17 @@ Remark: If the customer has enrolled through the school the **amount** will be t
 ```
  
 22.
-	- API Name: Coupon API
-	- Status: Need to be discuss URL
-	- URL: /coupon/
-	- Comment: This  belong to module Common or Coupon or refer?
-	- Module: Product
+	- API Name: Discount API
+	- URL: /user/123/order/discount/
+	- Module: Order
 	- Method: POST
 	- Header: Loggedin-Platform-Header
 	- Request:
 ```
 {
+  "order_id": 123,
   "Coupon_code": LOGIQ100,
+  "wallet_status": True or False
 }
 ```
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
@@ -1384,11 +1384,15 @@ Remark: If the customer has enrolled through the school the **amount** will be t
 {
   "meta": "",
   "data": {
-    "valid_request": true or false,
-    "price":3000
+    "discount": 200,
+    "is_coupon_valid": true or false,
+    "coupon_deductable": 200,
+    "wallet_deductable": 200,
+    "final_price": 200,   
   }
 }
 ```
+
 23. 
 	- API Name: Checkout API
 	- Status: Need to be discuss URL
@@ -1400,10 +1404,7 @@ Remark: If the customer has enrolled through the school the **amount** will be t
 	- Request:
 ```
 {
- "package_ids": [
-      23,
-      24
-  ],
+  "order_id": 123,
   "coupon_code": "LOGIQ100",
   "wallet_applied":true
 }
@@ -1414,7 +1415,7 @@ Remark: If the customer has enrolled through the school the **amount** will be t
   "meta": "",
   "data": {
     "order_id": 1,
-    "amount": 1212
+    "final_price": 1212
   }
 }
 ```
@@ -1431,7 +1432,7 @@ Remark: If the customer has enrolled through the school the **amount** will be t
 ```
 {
   "order_id": 123
-  "state_id": 1
+  "tax_id": 1
 }
 ```
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
@@ -1440,7 +1441,7 @@ Remark: If the customer has enrolled through the school the **amount** will be t
   "meta": "",
   "data": {
     "order_id": 1,
-    "amount": 1212
+    "final_price": 1212
   }
 }
 ```
