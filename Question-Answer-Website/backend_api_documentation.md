@@ -182,7 +182,7 @@ We will be utilising the URL based Versioning i.e we will use the version number
 
 1.	
 	- API Name: Reviews API
-	- URL: /products/review/
+	- URL: /v1/review/
 	- Comment: Review is a property of a product or a company, here review/rating is of the company itself, Should it belong to module named as company or logiqids?
 	- Module: Logiqids
 	- Method: GET
@@ -212,7 +212,7 @@ We will be utilising the URL based Versioning i.e we will use the version number
 2.
 	- API Name: School Partnership API
 	- Status: Might not be required, need to be discussed
-	- URL: /products/school_partnership/
+	- URL: /v1/school_partnership/
 	- Comment: Partnership is a property of a of the company itself, Should it belong to module named as company or logiqids?
 	- Module: Logiqids
 	- Method: GET
@@ -256,7 +256,7 @@ We will be utilising the URL based Versioning i.e we will use the version number
 3.
 	- API Name: Contact Us Post API
 	- Status: Need to be discuss the URL
-	- URL: /company/contact/
+	- URL: /v1/contact/
 	- Comment: Contact info is a property of a of the company itself, Should it belong to module named as company or logiqids?
 	- Module: Logiqids
 	- Method: POST
@@ -269,7 +269,6 @@ We will be utilising the URL based Versioning i.e we will use the version number
     "mobile" : "9911616971",
     "city":"Mumbai",
     "query : "Can I get test package for my 9 month baby?",
-    "captcha_valid" : true,
   }
 }
 ```
@@ -306,12 +305,20 @@ We will be utilising the URL based Versioning i.e we will use the version number
 
 5.	- API Name: Pricing API
 	- Status: Need to be discuss the Usage and URL
-	- URL: /product/pricing/
+	- URL: /v1/product/pricing/
 	- Comment: Price is either a function of a Product independently or of the company's  info is a property of a of the company itself, Should it belong to module named as company or logiqids?
 	- Module: Product
-	- Method: GET
+	- Method: POST
 	- Header: Platform-Header
-	- Request: No Query Params
+	- Request: 
+	for Logged Out Users
+	{
+		"user_id": "null"
+	}
+	for Logged In Users
+	{
+		"user_id": 1876
+	}
 	- Remark: The content package data and the test package data can take every combination in the content + test case so we shouldn't send the package data again in the content + test case. The discount on the content + test case can be passed in the content + test column as a percentage amount and the front end can contain the logic to round of the figure so that the customer doesn't see prices in floating points.
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
 > __HTTP/1.1 200 OK__ 
@@ -326,6 +333,7 @@ We will be utilising the URL based Versioning i.e we will use the version number
 		},
 		"pricing": [{
 				"product": "test",
+				"is_allowed": true
 				"product_data": {
 					"image_url": "https://www.facebook.com/img/123",
 					"name": "Test",
@@ -362,6 +370,7 @@ We will be utilising the URL based Versioning i.e we will use the version number
 			},
 			{
 				"product": "content",
+				"is_allowed": true
 				"product_data": {
 					"image_url": "https://www.facebook.com/img/123",
 					"name": "Content",
@@ -408,6 +417,7 @@ We will be utilising the URL based Versioning i.e we will use the version number
 			},
 			{
 				"product": "test_and_content",
+				"is_allowed": true
 				"product_data": {
 					"image_url": "https://www.facebook.com/img/123",
 					"name": "Content and Test",
