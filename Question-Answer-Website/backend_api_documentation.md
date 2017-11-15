@@ -309,7 +309,7 @@ We will be utilising the URL based Versioning i.e we will use the version number
 	- Comment: Price is either a function of a Product independently or of the company's  info is a property of a of the company itself, Should it belong to module named as company or logiqids?
 	- Module: Product
 	- Method: POST
-	- Header: Platform-Header
+	- Header: Platform-Header,(if logged in then send logged in header)
 	- Request: 
 	for Logged Out Users
 	{
@@ -320,6 +320,11 @@ We will be utilising the URL based Versioning i.e we will use the version number
 		"user_id": 1876
 	}
 	- Remark: The content package data and the test package data can take every combination in the content + test case so we shouldn't send the package data again in the content + test case. The discount on the content + test case can be passed in the content + test column as a percentage amount and the front end can contain the logic to round of the figure so that the customer doesn't see prices in floating points.
+	
+	
+Remarks: if discouted price == price 
+            we will return same price in both the fields.
+
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
 > __HTTP/1.1 200 OK__ 
 
@@ -458,6 +463,8 @@ We will be utilising the URL based Versioning i.e we will use the version number
 	}
 }
 ```
+
+		
 
 6.  
 	- API Name: City API
