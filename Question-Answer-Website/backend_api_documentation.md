@@ -1461,7 +1461,33 @@ Remark: If the customer has enrolled through the school the **amount** will be t
   }
 }
 ```
-
+25.
+	- API Name: Sample Paper Download Leads API
+	- Status: Need to be discuss URL
+	- URL: /sample_paper/
+	- Module: Product
+	- Method: POST
+	- Header: Platform-Header
+	- Request:
+``` 
+{
+  "full_name": "Nimesh Kiran Verma",
+  "mobile_number": "9911616971",
+  "email": "nimesh.aug11@gmail.com",
+  "city_name": "Mumbai",
+  "class_id": 1,
+  "school": "St Xaviers Sr Sec School",
+}
+``` 
+	- Response: __EXCEPTIONED_GENERIC_STATUS_RESPONSE_FORMAT__
+> __HTTP/1.1 200 OK__
+```
+{
+  "meta": "",
+  "data": {
+    "sample_test_paper": "PDF File link", 
+}
+```
 
 
 ====================================================================================
