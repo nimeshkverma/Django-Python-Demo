@@ -268,8 +268,7 @@ We will be utilising the URL based Versioning i.e we will use the version number
     "email" : "nimesh.aug11@gmail.com",
     "mobile" : "9911616971",
     "city":"Mumbai",
-    "query : "Can I get test package for my 9 month baby?",
-  }
+    "query" : "Can I get test package for my 9 month baby?"
 }
 ```
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
