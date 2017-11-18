@@ -10,7 +10,7 @@
 
 Eg:
 
-```
+```json
 {
     "homepage":{
         "prominent_message": "Your kids personal brain trainer"
@@ -36,7 +36,7 @@ This document aims to provide a general understanding of the backend APIs and it
 #### 1. Response: 
 ##### 1.1. Meta-Data-Response:
 A response is called Meta-Data-Response when it satisfies the following JSON schema
-```
+```json
 {
 	"meta" : "This is used to provide any meta information about the API, mostly not used by clients (browsers/apps)",
 	"data" : { 
@@ -49,7 +49,7 @@ A response is called Meta-Data-Response when it satisfies the following JSON sch
 A __Meta-Data-Response__ to represent the Successfull API call
 Status: __200__
 Generic __200__ JSON:
-```
+```json
 {
 	"meta":"",
 	"data":{
@@ -62,7 +62,7 @@ Generic __200__ JSON:
 A __Meta-Data-Response__ to represent the response where client call the API with incorrect request.
 Status: __400__
 Generic __400__ JSON:
-```
+```json
 {
   "meta": "",
   "data": {
@@ -71,11 +71,12 @@ Generic __400__ JSON:
   }
 }
 ```
+
 ##### 1.4. HTTP_403_FORBIDDEN
 A __Meta-Data-Response__ to represent the response where client tries to access the resource which it doesnt have the acess.
 Status: __403__
 Generic __403__ JSON:
-```
+```json
 {
   "meta": "",
   "data": {
@@ -84,11 +85,12 @@ Generic __403__ JSON:
   }
 }
 ```
+
 ##### 1.5. HTTP_404_NOT_FOUND
 A __Meta-Data-Response__ to represent the response where client tries to access the resource which does not exist.
 Status: __404__
 Generic __404__ JSON:
-```
+```json
 {
   "meta": "",
   "data": {
@@ -97,13 +99,15 @@ Generic __404__ JSON:
   }
 }
 ```
+
 ##### 1.6. HTTP_500_INTERNAL_SERVER_ERROR __500__
 A __Meta-Data-Response__ to represent the response where code fails at the server end.
 Status: __500__
 Generic __500__ JSON:
-```
+```json 
 {} 
 ```
+
 ##### 1.7. ALL_GENERIC_STATUS_RESPONSE_FORMAT
 __ALL_GENERIC_STATUS_RESPONSE_FORMAT__ implies that the given API satisfies the following:
 * Gives __HTTP_200_OK__ Response for 200
@@ -127,7 +131,7 @@ __ALL_GENERIC_STATUS_RESPONSE_FORMAT__ implies that the given API satisfies the 
 A header is defined as LoggedIn-Header when the header has the session token in it. This type of header is used for the user who is the registered user and has logged into the system.
 
 LoggedIn-Header JSON:
-```
+```json
 {
 	"session_token":"logiqid_34_mYrmAIJA6TUDqfOvpfqez7fM9Mp11n2b"
 }
@@ -144,7 +148,7 @@ where **uuid** is a 32 Character unique text used for user identification
 A header is defined as Platform-Header when the header has the information about the platform which is calling the API. This type of header is used for the cases when the same API needs to served differently for different Platforms.
  
 Platform-Header JSON:
-```
+```json
 {
 	"source":"desktop_browser"
 }
@@ -159,17 +163,17 @@ source can take any of the following values:
 In our system we will be having either:
 
 Loggedin-Platform-Header = Loggedin-Header + Platform-Header
-```
+```json
 {
-	"session_token":"logiqid_34_mYrmAIJA6TUDqfOvpfqez7fM9Mp11n2b",
-	"source":"desktop_browser"
+	"Session-Token":"logiqid_34_mYrmAIJA6TUDqfOvpfqez7fM9Mp11n2b",
+	"Source":"desktop_browser"
 }
 ```
 
 Platform-Header
-```
+```json
 {
-	"source":"desktop_browser"
+	"Source":"desktop_browser"
 }
 ```
 
@@ -182,409 +186,357 @@ We will be utilising the URL based Versioning i.e we will use the version number
 
 1.	
 	- API Name: Reviews API
-	- URL: /v1/review/
-	- Comment: Review is a property of a product or a company, here review/rating is of the company itself, Should it belong to module named as company or logiqids?
-	- Module: Logiqids
+	- URL: /products/review/
+	- Module: particulars
 	- Method: GET
 	- Header: Platform-Header
 	- Request: No Query Params
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__
-```
-{
-    "meta":"",
-    "data":[
-        {
-            "review_url":"https://www.fb.com/comment/123",
-            "image_url":"https://www.facebook.com/img/123",
-            "review":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor incididunt utnsequat",
-            "reviewer":"Rita Singh"
-        },
-        {
-            "review_url":"https://www.fb.com/comment/123",
-            "image_url":"https://www.facebook.com/img/123",
-            "review":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor incididunt utnsequat",
-            "reviewer":"Rita Singh"
-        }
-    ]
-}
-```
+    > __HTTP/1.1 200 OK__
+    ```json
+    {
+        "meta":"",
+        "data":[
+            {
+                "review_url":"https://www.fb.com/comment/123",
+                "image_url":"https://www.facebook.com/img/123",
+                "review":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor incididunt utnsequat",
+                "reviewer":"Rita Singh"
+            },
+            {
+                "review_url":"https://www.fb.com/comment/123",
+                "image_url":"https://www.facebook.com/img/123",
+                "review":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmo tempor incididunt utnsequat",
+                "reviewer":"Rita Singh"
+            }
+        ]
+    }
+    ```
+
 2.
 	- API Name: School Partnership API
-	- Status: Might not be required, need to be discussed
-	- URL: /v1/school_partnership/
-	- Comment: Partnership is a property of a of the company itself, Should it belong to module named as company or logiqids?
-	- Module: Logiqids
+	- URL: /products/school_partnership/
+	- Module: particulars
 	- Method: GET
 	- Header: Platform-Header
 	- Request: No Query Params
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__
-```
-{
-  "meta": "",
-  "data": [
-	  {
-	    "image_url": "https://www.facebook.com/img/123",
-	    "school": "Kendriya Vidhyalaya 1",
-	    "info": ""
-	  },
-	  {
-	    "image_url": "https://www.facebook.com/img/123",
-	    "school": "Kendriya Vidhyalaya 1",
-	    "info": ""
-	  },
-	  {
-	    "image_url": "https://www.facebook.com/img/123",
-	    "school": "Kendriya Vidhyalaya 1",
-	    "info": ""
-	  },
-	  {
-	    "image_url": "https://www.facebook.com/img/123",
-	    "school": "Kendriya Vidhyalaya 1",
-	    "info": ""
-	  },
-	  {
-	    "image_url": "https://www.facebook.com/img/123",
-	    "school": "Kendriya Vidhyalaya 1",
-	    "info": ""
-	  }
-  ]
-}
-```
+    > __HTTP/1.1 200 OK__
+    ```json
+    {
+      "meta": "",
+      "data": [
+    	  {
+    	    "image_url": "https://www.facebook.com/img/123",
+    	    "school": "Kendriya Vidhyalaya 1",
+    	    "info": ""
+    	  },
+    	  {
+    	    "image_url": "https://www.facebook.com/img/123",
+    	    "school": "Kendriya Vidhyalaya 1",
+    	    "info": ""
+    	  },
+    	  {
+    	    "image_url": "https://www.facebook.com/img/123",
+    	    "school": "Kendriya Vidhyalaya 1",
+    	    "info": ""
+    	  },
+    	  {
+    	    "image_url": "https://www.facebook.com/img/123",
+    	    "school": "Kendriya Vidhyalaya 1",
+    	    "info": ""
+    	  },
+    	  {
+    	    "image_url": "https://www.facebook.com/img/123",
+    	    "school": "Kendriya Vidhyalaya 1",
+    	    "info": ""
+    	  }
+      ]
+    }
+    ```
 
 3.
 	- API Name: Contact Us Post API
 	- Status: Need to be discuss the URL
-	- URL: /v1/contact/
-	- Comment: Contact info is a property of a of the company itself, Should it belong to module named as company or logiqids?
-	- Module: Logiqids
+	- URL: /company/contact/
+	- Module: particulars
 	- Method: POST
 	- Header: Platform-Header
 	- Request: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-```
-{
-    "name" : "Nimesh Verma",
-    "email" : "nimesh.aug11@gmail.com",
-    "mobile" : "9911616971",
-    "city":"Mumbai",
-    "query" : "Can I get test package for my 9 month baby?"
-}
-```
-	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__
-```
-{
-    "meta" : "",
-    "data" : {
-        "message":"Your query has been submitted, We will get back to you ASAP"
-  }
-}
-```
+    ```json
+    {
+        "name" : "Nimesh Verma",
+        "email" : "nimesh.aug11@gmail.com",
+        "mobile" : "9911616971",
+        "city":"Mumbai",
+        "query" : "Can I get test package for my 9 month baby?",
+        "captcha_valid" : true,
+      }
+    }
+    ```
 
-4. #CHECK: Do we still need this
-	- API Name: Captcha API
-	- Status: Need to be discuss the Usage and URL
-	- URL: /utility/captcha/
-	- Module: Common
+	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
+    > __HTTP/1.1 200 OK__
+    ```json
+    {
+        "meta" : "",
+        "data" : {
+            "message":"Your query has been submitted, We will get back to you ASAP"
+      }
+    }
+    ```
+
+4.	
+    - API Name: Pricing API
+	- URL: /product/pricing/
+	- Module: product
 	- Method: GET
 	- Header: Platform-Header
 	- Request: No Query Params
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__
-```
-{
-  "meta": "",
-  "data": {
-    "image_url": "https://www.facebook.com/img/123",
-    "correct_value": "IVijqer"
-  }
-}
-``` 
+    > __HTTP/1.1 200 OK__ 
+    ```json
+    {
+    	"meta": "",
+    	"data": {
+    		"message": {
+    			"heading": "Simple & transparent pricing",
+    			"bottom": "15-Days, No Questions Asked, Full Money-Back guarantee. (Valid only for the Content Subscription)"
+    		},
+    		"pricing": [{
+    				"product": "test",
+    				"product_data": {
+    					"image_url": "https://www.facebook.com/img/123",
+    					"name": "Test",
+    					"description": "Includes 4 sample papers and 5 Topic Notes",
+    					"price": 550,
+    					"offer": { 
+    						"price": 450,
+    						"validity_date": "21/7/2017",
+    						"text": "Early bird discount till"
+    					},
+    					"button_text": "Buy Now",
+    					"features": [{
+    							"image_url": "https://www.facebook.com/img/123",
+    							"status": true,
+    							"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
+    						},
+    						{
+    							"image_url": "https://www.facebook.com/img/123",
+    							"status": true,
+    							"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
+    						},
+    						{
+    							"image_url": "https://www.facebook.com/img/123",
+    							"status": true,
+    							"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
+    						},
+    						{
+    							"image_url": "https://www.facebook.com/img/123",
+    							"status": true,
+    							"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
+    						}
+    					]
+    				}
+    			},
+    			{
+    				"product": "content",
+    				"product_data": {
+    					"image_url": "https://www.facebook.com/img/123",
+    					"name": "Content",
+    					"description": "dcdsc svfv",
+    					"price": [{
+    							"period": "3 months",
+    							"price": 900,
+    							"package_id": 12
+    						},
+    						{
+    							"period": "6 months",
+    							"price": 1400,
+    							"package_id": 12
+    						},
+    						{
+    							"period": "1 year",
+    							"price": 2200,
+    							"package_id": 12
+    						}
+    					],
+    					"button_text": "Buy Now",
+    					"features": [{
+    							"image_url": "https://www.facebook.com/img/123",
+    							"status": true,
+    							"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
+    						},
+    						{
+    							"image_url": "https://www.facebook.com/img/123",
+    							"status": true,
+    							"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
+    						},
+    						{
+    							"image_url": "https://www.facebook.com/img/123",
+    							"status": true,
+    							"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
+    						},
+    						{
+    							"image_url": "https://www.facebook.com/img/123",
+    							"status": true,
+    							"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
+    						}
+    					]
+    				}
+    			},
+    			{
+    				"product": "test_and_content",
+    				"product_data": {
+    					"image_url": "https://www.facebook.com/img/123",
+    					"name": "Content and Test",
+    					"description": "ddwwdwdsa edewsds ",
+    					"discount": {
+    						"percentage": 10,
+    						"validity_date": "21/7/2017",
+    						"text": "10% Off"
+    					},
+    					"price": [{
+    							"period": "3 months",
+    							"price": 1350,
+    							"discounted_price": 1215,
+    							"package_id": 12
+    						},
+    						{
+    							"period": "6 months",
+    							"price": 1850,
+    							"discounted_price": 1665,
+    							"package_id": 12
+    						},
+    						{
+    							"period": "1 year",
+    							"price": 2650,
+    							"discounted_price": 2385,
+    							"package_id": 12
+    						}
+    					],
+    					"button_text": "Buy Now",
+    					"features": [{
+    						"image_url": "https://www.facebook.com/img/123",
+    						"status": true,
+    						"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
+    					}]
+    				}
+    			}
+    		]
+    	}
+    }
+    ```
 
-5.	- API Name: Pricing API
-	- Status: Need to be discuss the Usage and URL
-	- URL: /v1/product/pricing/
-	- Comment: Price is either a function of a Product independently or of the company's  info is a property of a of the company itself, Should it belong to module named as company or logiqids?
-	- Module: Product
-	- Method: POST
-	- Header: Platform-Header,(if logged in then send logged in header)
-	- Request: 
-	for Logged Out Users
-	{
-		"user_id": "null"
-	}
-	for Logged In Users
-	{
-		"user_id": 1876
-	}
-	- Remark: The content package data and the test package data can take every combination in the content + test case so we shouldn't send the package data again in the content + test case. The discount on the content + test case can be passed in the content + test column as a percentage amount and the front end can contain the logic to round of the figure so that the customer doesn't see prices in floating points.
-	
-	
-Remarks: if discouted price == price 
-            we will return same price in both the fields.
-
-	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__ 
-
-```
-{
-	"meta": "",
-	"data": {
-		"message": {
-			"heading": "Simple & transparent pricing",
-			"bottom": "15-Days, No Questions Asked, Full Money-Back guarantee. (Valid only for the Content Subscription)"
-		},
-		"pricing": [{
-				"product": "test",
-				"is_allowed": true
-				"product_data": {
-					"image_url": "https://www.facebook.com/img/123",
-					"name": "Test",
-					"description": "Includes 4 sample papers and 5 Topic Notes",
-					"price": 550,
-					"offer": { // This will be the empty if there is no offer
-						"price": 450,
-						"validity_date": "21/7/2017",
-						"text": "Early bird discount till"
-					},
-					"button_text": "Buy Now",
-					"features": [{
-							"image_url": "https://www.facebook.com/img/123",
-							"status": true,
-							"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
-						},
-						{
-							"image_url": "https://www.facebook.com/img/123",
-							"status": true,
-							"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
-						},
-						{
-							"image_url": "https://www.facebook.com/img/123",
-							"status": true,
-							"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
-						},
-						{
-							"image_url": "https://www.facebook.com/img/123",
-							"status": true,
-							"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
-						}
-					]
-				}
-			},
-			{
-				"product": "content",
-				"is_allowed": true
-				"product_data": {
-					"image_url": "https://www.facebook.com/img/123",
-					"name": "Content",
-					"description": "dcdsc svfv",
-					"price": [{
-							"period": "3 months",
-							"price": 900,
-							"package_id": 12
-						},
-						{
-							"period": "6 months",
-							"price": 1400,
-							"package_id": 12
-						},
-						{
-							"period": "1 year",
-							"price": 2200,
-							"package_id": 12
-						}
-					],
-					"button_text": "Buy Now",
-					"features": [{
-							"image_url": "https://www.facebook.com/img/123",
-							"status": true,
-							"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
-						},
-						{
-							"image_url": "https://www.facebook.com/img/123",
-							"status": true,
-							"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
-						},
-						{
-							"image_url": "https://www.facebook.com/img/123",
-							"status": true,
-							"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
-						},
-						{
-							"image_url": "https://www.facebook.com/img/123",
-							"status": true,
-							"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
-						}
-					]
-				}
-			},
-			{
-				"product": "test_and_content",
-				"is_allowed": true
-				"product_data": {
-					"image_url": "https://www.facebook.com/img/123",
-					"name": "Content and Test",
-					"description": "ddwwdwdsa edewsds ",
-					"discount": {
-						"percentage": 10,
-						"validity_date": "21/7/2017",
-						"text": "10% Off"
-					},
-					"price": [{
-							"period": "3 months",
-							"price": 1350,
-							"discounted_price": 1215,
-							"package_id": 12
-						},
-						{
-							"period": "6 months",
-							"price": 1850,
-							"discounted_price": 1665,
-							"package_id": 12
-						},
-						{
-							"period": "1 year",
-							"price": 2650,
-							"discounted_price": 2385,
-							"package_id": 12
-						}
-					],
-					"button_text": "Buy Now",
-					"features": [{
-						"image_url": "https://www.facebook.com/img/123",
-						"status": true,
-						"text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
-					}]
-				}
-			}
-		]
-	}
-}
-```
-
-		
-
-6.  
-	- API Name: City API
+5.  
+    - API Name: City API
 	- Status: Need to be discuss URL
 	- URL: /utility/test/city/
-	- Comment: City is a generic property Should it belong to module named as company or logiqids or in Common or to Test?
 	- Module: Product
 	- Method: GET
 	- Header: Platform-Header
 	- Request: No Query Params
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__
-```
-{
-  "meta": "",
-  "data": [
-  {
-    "id": 1,
-    "name": "Mumbai",
-    "supported": true
-  },
-  {
-    "id": 2,
-    "name": "Pune",
-    "supported": true
-  },
-  {
-    "id": 3,
-    "name": "Ahemdabad",
-    "supported": true
-  },
-  {
-    "id": 4,
-    "name": "Nasik",
-    "supported": true
-  },
-  {
-    "id": 5,
-    "name": "Bhopal",
-    "supported": false
-  },
-  {
-    "id": 6,
-    "name": "Other",
-    "supported": true
-  }
-  ]
-}
-```
+    > __HTTP/1.1 200 OK__
+    ```json
+    {
+      "meta": "",
+      "data": [
+      {
+        "id": 1,
+        "name": "Mumbai",
+        "supported": true
+      },
+      {
+        "id": 2,
+        "name": "Pune",
+        "supported": true
+      },
+      {
+        "id": 3,
+        "name": "Ahemdabad",
+        "supported": true
+      },
+      {
+        "id": 4,
+        "name": "Nasik",
+        "supported": true
+      },
+      {
+        "id": 5,
+        "name": "Bhopal",
+        "supported": false
+      },
+      {
+        "id": 6,
+        "name": "Other",
+        "supported": true
+      }
+      ]
+    }
+    ```
 
-
-7.        
+6. 
 	- API Name: Class API
 	- Status: Need to be discuss URL
 	- URL: /user/class/
-	- Comment: Class is a generic property Should it belong to module named as company or logiqids or in Common?
 	- Module: Product
 	- Method: GET
 	- Header: Platform-Header
 	- Request: No Query Params
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__
-```
-{
-  "meta": "",
-  "data": [
-  {
-    "id": 1,
-    "name": "Sr KG",
-    "supported": true
-  },
-  {
-    "id": 2,
-    "name": "Class 1",
-    "supported": true
-  },
-  {
-    "id": 3,
-    "name": "Class 2",
-    "supported": true
-  },
-  {
-    "id": 4,
-    "name": "Class 3",
-    "supported": true
-  },
-  {
-    "id": 5,
-    "name": "Class 4",
-    "supported": false
-  },
-  {
-    "id": 6,
-    "name": "Class 5",
-    "supported": true
-  },
-  {
-    "id": 7,
-    "name": "Class 6",
-    "supported": true
-  },
-  {
-    "id": 8,
-    "name": "Class 7",
-    "supported": true
-  },
-  {
-    "id": 9,
-    "name": "Class 8",
-    "supported": true
-  },
-  {
-    "id": 10,
-    "name": "Class 9",
-    "supported": true
-  }
-  ]
-}
-```
+    > __HTTP/1.1 200 OK__
+    ```json
+    {
+      "meta": "",
+      "data": [
+      {
+        "id": 1,
+        "name": "Sr KG"
+      },
+      {
+        "id": 2,
+        "name": "Class 1"
+      },
+      {
+        "id": 3,
+        "name": "Class 2"
+      },
+      {
+        "id": 4,
+        "name": "Class 3"
+      },
+      {
+        "id": 5,
+        "name": "Class 4",
+        "supported": false
+      },
+      {
+        "id": 6,
+        "name": "Class 5"
+      },
+      {
+        "id": 7,
+        "name": "Class 6"
+      },
+      {
+        "id": 8,
+        "name": "Class 7"
+      },
+      {
+        "id": 9,
+        "name": "Class 8"
+      },
+      {
+        "id": 10,
+        "name": "Class 9"
+      }
+      ]
+    }
+    ```
 
-8.	- API Name: Test Info API
+8.	
+    - API Name: Test Info API
 	- Status: Need to be discuss URL
 	- URL: /test/info/
 	- Comment: This belongs to Test module?
@@ -593,58 +545,59 @@ Remarks: if discouted price == price
 	- Header: Platform-Header
 	- Request: {}
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__
-```
-{
-  "meta": "",
-  "data": {
-    "city_data": [
-      {
-        "city_id": 1,
-        "city_name": "Mumbai",
-        "price":550,
-        "package_id": 1,
-        "test_schedule": [
+    > __HTTP/1.1 200 OK__
+    ```json
+    {
+      "meta": "",
+      "data": {
+        "city_data": [
           {
-            "name": "Level 1:",
-            "image_url": "https://www.facebook.com/img/123",
-            "schedule": "October 29",
-            "venue": "Khar Education Society (Khar) & DD Rashtriya Shala (Ghatkopar)"
+            "city_id": 1,
+            "city_name": "Mumbai",
+            "price":550,
+            "package_id": 1,
+            "test_schedule": [
+              {
+                "name": "Level 1:",
+                "image_url": "https://www.facebook.com/img/123",
+                "schedule": "October 29",
+                "venue": "Khar Education Society (Khar) & DD Rashtriya Shala (Ghatkopar)"
+              },
+              {
+                "name": "Level 2:",
+                "image_url": "https://www.facebook.com/img/123",
+                "schedule": "November 12",
+                "venue": "Gopi Birla Memorial School(Walkeshwar) & PPS Kandivali (Kandivali) & C P Goenka International School, Thane"
+              }
+            ]
           },
           {
-            "name": "Level 2:",
-            "image_url": "https://www.facebook.com/img/123",
-            "schedule": "November 12",
-            "venue": "Gopi Birla Memorial School(Walkeshwar) & PPS Kandivali (Kandivali) & C P Goenka International School, Thane"
-          }
-        ]
-      },
-      {
-        "city_id": 1,
-        "city_name": "Mumbai",
-        "price":550,
-        "package_id": 1,
-        "test_schedule": [
-          {
-            "name": "Level 1:",
-            "image_url": "https://www.facebook.com/img/123",
-            "schedule": "October 29",
-            "venue": "Khar Education Society (Khar) & DD Rashtriya Shala (Ghatkopar)"
-          },
-          {
-            "name": "Level 2:",
-            "image_url": "https://www.facebook.com/img/123",
-            "schedule": "November 12",
-            "venue": "Gopi Birla Memorial School(Walkeshwar) & PPS Kandivali (Kandivali) & C P Goenka International School, Thane"
+            "city_id": 1,
+            "city_name": "Mumbai",
+            "price":550,
+            "package_id": 1,
+            "test_schedule": [
+              {
+                "name": "Level 1:",
+                "image_url": "https://www.facebook.com/img/123",
+                "schedule": "October 29",
+                "venue": "Khar Education Society (Khar) & DD Rashtriya Shala (Ghatkopar)"
+              },
+              {
+                "name": "Level 2:",
+                "image_url": "https://www.facebook.com/img/123",
+                "schedule": "November 12",
+                "venue": "Gopi Birla Memorial School(Walkeshwar) & PPS Kandivali (Kandivali) & C P Goenka International School, Thane"
+              }
+            ]
           }
         ]
       }
-    ]
-  }
-}
-```
+    }
+    ```
 
-9.	- API Name: Registration API
+9.	
+    - API Name: Registration API
 	- Status: Need to discuss URL
 	- URL: /user/registration/
 	- Comment: This  belong to module User?
@@ -652,461 +605,457 @@ Remarks: if discouted price == price
 	- Method: POST
 	- Header: Platform-Header
 	- Request:
-``` 
-{
-  "full_name": "Nimesh Kiran Verma",
-  "mobile_number":"9911616971",
-  "email":"nimesh.aug11@gmail.com",
-  "city_id":1, // This we be empty if the city_id is not chosen from the list 
-  "city_name": "Mumbai", 
-  "class_id":1,
-  "school":"St Xaviers Sr Sec School",
-  "password":"password123"
-  "refer_code":"Mikin7332"
-}
-```
-	- Response: __EXCEPTIONED_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__
-```
-{
-  "meta": "",
-  "data": {
-    "customer_id": 101,
-    "session_id": "logikids_101_Ad10w9TSOLRlH0tI6clnA8KXchFXd3kl"
-  }
-}
-```
-> __HTTP/1.1 404 Not Found__: Use Generic Response
-> __HTTP/1.1 400 Bad Request__: 
-If the email input is not a valid email  
-```
-{
-	"meta":"",
-	"data":{
-		"error_message": "The email is not a valid email"
-	}
-}
-```
-If a user with that email already exists  
-```
-{
-	"meta":"",
-	"data":{
-		"error_message": "A user with this email already exists"
-	}
-}
-```
-If the mobile number is not a valid 10 digit number  
-```
-{
-	"meta":"",
-	"data":{
-		"error_message": "The mobile number is not a valid 10 digit number"
-	}
-}
-```
-If the city id does not exist  
-```
-{
-	"meta":"",
-	"data":{
-		"error_message": "This city_id does not exist"
-	}
-}
-```
-If the school name is invalid  
-```
-{
-	"meta":"",
-	"data":{
-		"error_message": "school name is not present in our system"
-	}
-}
-```
-If the school name is valid but present in the city specified by the city_id  
-```
-{
-	"meta":"",
-	"data":{
-		"error_message": "There is no such school name in the city you have selected"
-	}
-}
-```
-If the refer code is invalid  
-```
-{
-	"meta":"",
-	"data":{
-		"error_message": "The refer code is invalid"
-	}
-}
-```
+    ```json 
+    {
+      "full_name": "Nimesh Kiran Verma",
+      "mobile_number":"9911616971",
+      "email":"nimesh.aug11@gmail.com",
+      "city_id":1,
+      "city_name": "Mumbai", 
+      "class_id":1,
+      "school":"St Xaviers Sr Sec School",
+      "password":"password123"
+      "refer_code":"Mikin7332"
+    }
+    ```
+	
+    - Response: __EXCEPTIONED_GENERIC_STATUS_RESPONSE_FORMAT__
+    > __HTTP/1.1 200 OK__
+    ```json
+    {
+      "meta": "",
+      "data": {
+        "customer_id": 101,
+        "session_id": "logikids_101_Ad10w9TSOLRlH0tI6clnA8KXchFXd3kl"
+      }
+    }
+    ```
+
+    > __HTTP/1.1 404 Not Found__: Use Generic Response
+    > __HTTP/1.1 400 Bad Request__: 
+    If a user with that email already exists  
+    ```json
+    {
+    	"meta":"",
+    	"data":{
+    		"errors": "A user with this email already exists"
+    	}
+    }
+    ```
+    If the mobile number is not a valid 10 digit number  
+    ```json
+    {
+    	"meta":"",
+    	"data":{
+    		"errors": "The mobile number is not a valid 10 digit number"
+    	}
+    }
+    ```
+    If the city id does not exist  
+    ```json
+    {
+    	"meta":"",
+    	"data":{
+    		"errors": "This city_id does not exist"
+    	}
+    }
+    ```
+    If the school name is invalid  
+    ```json
+    {
+    	"meta":"",
+    	"data":{
+    		"errors": "school name is not present in our system"
+    	}
+    }
+    ```
+    If the school name is valid but present in the city specified by the city_id  
+    ```json
+    {
+    	"meta":"",
+    	"data":{
+    		"errors": "There is no such school name in the city you have selected"
+    	}
+    }
+    ```
+    If the refer code is invalid  
+    ```json
+    {
+    	"meta":"",
+    	"data":{
+    		"errors": "The refer code is invalid"
+    	}
+    }
+    ```
 
 10.
 	- API Name: Test Leads API
-	- Status: Need to be discuss URL
 	- URL: /user/lead/
-	- Comment: This belong to module Test?
 	- Module: Test
 	- Method: POST
 	- Header: Platform-Header
 	- Request:
-``` 
-{
-  "full_name": "Nimesh Kiran Verma",
-  "mobile_number": "9911616971",
-  "email": "nimesh.aug11@gmail.com",
-  "city_id": 1,
-  "class_id": 1,
-  "school": "St Xaviers Sr Sec School",
-}
-``` 
-	- Response: __EXCEPTIONED_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__
-```
-{
-  "meta": "",
-  "data": {
-    "sample_test_paper": "Multipart PDF File",
-    "message": "Thanks for trying Us"
-}
-```
-> __HTTP/1.1 404 Not Found__: Use Generic Response
-> __HTTP/1.1 400 Bad Request__: 
->> #NOTE: These error cases need to be discussed separately as most of these can be handled in the font-end
-If the email input is not a valid email  
-```
-{
-	"meta":"",
-	"data":{
-		"error_message": "The email is not a valid email"
-	}
-}
-```
-If a user with that email already exists  
-```
-{
-	"meta":"",
-	"data":{
-		"error_message": "A user with this email already exists"
-	}
-}
-```
-If the mobile number is not a valid 10 digit number  
-```
-{
-	"meta":"",
-	"data":{
-		"error_message": "The mobile number is not a valid 10 digit number"
-	}
-}
-```
-If the city id does not exist  
-```
-{
-	"meta":"",
-	"data":{
-		"error_message": "This city_id does not exist"
-	}
-}
-```
-If the school name is invalid  
-```
-{
-	"meta":"",
-	"data":{
-		"error_message": "school name is not present in our system"
-	}
-}
-```
-If the school name is valid but present in the city specified by the city_id  
-```
-{
-	"meta":"",
-	"data":{
-		"error_message": "There is no such school name in the city you have selected"
-	}
-}
-```
+    ```json
+    {
+      "full_name": "Nimesh Kiran Verma",
+      "mobile_number": "9911616971",
+      "email": "nimesh.aug11@gmail.com",
+      "city_id": 1,
+      "class_id": 1,
+      "school": "St Xaviers Sr Sec School"
+    }
+    ```
+    	
+        - Response: __EXCEPTIONED_GENERIC_STATUS_RESPONSE_FORMAT__
+    > __HTTP/1.1 200 OK__
+
+    ```json
+    {
+      "meta": "",
+      "data": {
+        "sample_test_paper": "Multipart PDF File",
+        "message": "Thanks for trying Us"
+        }
+    }
+    ```
+
+    > __HTTP/1.1 404 Not Found__: Use Generic Response
+    > __HTTP/1.1 400 Bad Request__: 
+    ```json
+    {
+    	"meta":"",
+    	"data":{
+    		"error_message": "The email is not a valid email"
+    	}
+    }
+    ```
+    If a user with that email already exists  
+    ```json
+    {
+    	"meta":"",
+    	"data":{
+    		"error_message": "A user with this email already exists"
+    	}
+    }
+    ```
+    If the mobile number is not a valid 10 digit number  
+    ```json
+    {
+    	"meta":"",
+    	"data":{
+    		"error_message": "The mobile number is not a valid 10 digit number"
+    	}
+    }
+    ```
+    If the city id does not exist  
+    ```json
+    {
+    	"meta":"",
+    	"data":{
+    		"error_message": "This city_id does not exist"
+    	}
+    }
+    ```
+    If the school name is invalid  
+    ```json
+    {
+    	"meta":"",
+    	"data":{
+    		"error_message": "school name is not present in our system"
+    	}
+    }
+    ```
+    If the school name is valid but present in the city specified by the city_id  
+    ```json
+    {
+    	"meta":"",
+    	"data":{
+    		"error_message": "There is no such school name in the city you have selected"
+    	}
+    }
+    ```
 
 11.
 	- API Name: Login API
 	- Status: Need to be discuss URL
 	- URL: /user/login/
-	- Comment: This belong to module User?
 	- Module: User
 	- Method: POST
 	- Header: Platform-Header
 	- Request:
-```
-{
-  "email":"nimesh.aug11@gmail.com",
-  "password":"password123"
-}
-``` 
-	- Response: __EXCEPTIONED_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__ 
-```
-{
-  "meta": "",
-  "data": {
-    "customer_id": 101,
-    "session_id": "logikids_101_Ad10w9TSOLRlH0tI6clnA8KXchFXd3kl"
-  }
-}
-```
-> __HTTP/1.1 404 Not Found__: Use Generic Response
-> __HTTP/1.1 400 Bad Request__: 
-If the user credentials are not correct  
-```
-{
-	"meta":"",
-	"data":{
-		"error_message": "The email or password entered are not correct"
-	}
-}
-```
+    ```json
+    {
+      "email": "nimesh.aug11@gmail.com",
+      "password": "password123"
+    }
+    ```
+
+    - Response: __EXCEPTIONED_GENERIC_STATUS_RESPONSE_FORMAT__
+    > __HTTP/1.1 200 OK__ 
+    ```json
+    {
+      "meta": "",
+      "data": {
+        "customer_id": 101,
+        "session_id": "logikids_101_Ad10w9TSOLRlH0tI6clnA8KXchFXd3kl"
+      }
+    }
+    ```
+    
+    > __HTTP/1.1 404 Not Found__: Use Generic Response
+    > __HTTP/1.1 400 Bad Request__: 
+    If the user credentials are not correct  
+    ```json
+    {
+    	"meta":"",
+    	"data":{
+    		"error_message": "The email or password entered are not correct"
+    	}
+    }
+    ```
 
 12.
 	- API Name: Forgot Password API
 	- Status: Need to be discuss URL
 	- URL: /user/forgot_password/
-	- Comment: This  belong to module User?
 	- Module: User
 	- Method: POST
 	- Header: Platform-Header
 	- Request: 
-```
-{
-  "email":"nimesh.aug11@gmail.com",
-}
-``` 
-	- Response: __EXCEPTIONED_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__
-```
-{
-  "meta": "",
-  "data": {
-  "message ":"Password Reset Link has been sent to your registered Email"
-  }
-}
-```
-> __HTTP/1.1 404 Not Found__: Use Generic Response
-> __HTTP/1.1 400 Bad Request__: 
-If the email is not associated with any user in our database  
-```
-{
-	"meta":"",
-	"data":{
-		"error_message": "This email is not associated with any user in our database"
-	}
-}
-```
+    ```json
+    {
+      "email": "nimesh.aug11@gmail.com"
+    }
+    ```
 
-13.1.
+    - Response: __EXCEPTIONED_GENERIC_STATUS_RESPONSE_FORMAT__
+    > __HTTP/1.1 200 OK__
+    ```json
+    {
+      "meta": "",
+      "data": {
+      "message ":"Password Reset Link has been sent to your registered Email"
+      }
+    }
+    ```
+    
+    > __HTTP/1.1 404 Not Found__: Use Generic Response
+    > __HTTP/1.1 400 Bad Request__: 
+    If the email is not associated with any user in our database  
+    ```json
+    {
+    	"meta":"",
+    	"data":{
+    		"error_message": "This email is not associated with any user in our database"
+    	}
+    }
+    ```
 
-	- API Name: Reset Password API
-	- Status: Need to be discuss URL
-	- URL: /user/forgot_password_link/
-	- Module: User
-	- Method: GET
-	- Header: Platform-Header
-	- Request: Query Paramsid=4675&code=uAm-wlA6HKsuZsZYREZlgfkJzhR7ikG3 
-	- Response: __EXCEPTIONED_GENERIC_STATUS_RESPONSE_FORMAT__
-	
-> __HTTP/1.1 200 OK__
-```
-{
-  "meta": "",
-  "data": {
-	  "email": "nimesh.aug11@gmail.com"
-  }
-}
-```
-> __HTTP/1.1 404 Not Found__: Use Generic Response
+13.
+    1.	
+        - API Name: Reset Password API
+    	- Status: Need to be discuss URL
+    	- URL: /user/forgot_password_link/
+    	- Module: User
+    	- Method: GET
+    	- Header: Platform-Header
+    	- Request: Query Params, id=4675&code=uAm-wlA6HKsuZsZYREZlgfkJzhR7ikG3 
+    	- Response: __EXCEPTIONED_GENERIC_STATUS_RESPONSE_FORMAT__
+        > __HTTP/1.1 200 OK__
 
-13.2.
+        ```json
+        {
+          "meta": "",
+          "data": {
+        	  "email": "nimesh.aug11@gmail.com"
+          }
+        }
+        ```
 
-	- API Name: Reset Password API
-	- Status: Need to be discuss URL
-	- URL: /user/forgot_password_link/
-	- Module: User
-	- Method: POST
-	- Header: Platform-Header
-	- Request:
-```
-{
-  "id": "4675",
-  "code": "uAm-wlA6HKsuZsZYREZlgfkJzhR7ikG3",
-  "email ":nimesh.aug11@gmail.com,
-  "password":"new_password"
-}
-``` 
-	- Response: __EXCEPTIONED_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__
-```
-{
-  "meta": "",
-  "data": {
-  "email ":"nimesh.aug11@gmail.com"
-  }
-}
-``` 
-> __HTTP/1.1 404 Not Found__: Use Generic Response
-> __HTTP/1.1 400 Bad Request__: 
-If the user email and token are not correct  
-```
-{
-	"meta":"",
-	"data":{
-		"error_message": "Your email or token are invalid"
-	}
-}
-```
+        > __HTTP/1.1 404 Not Found__: Use Generic Response
+
+    2.
+    	- API Name: Reset Password API
+    	- Status: Need to be discuss URL
+    	- URL: /user/forgot_password_link/
+    	- Module: User
+    	- Method: POST
+    	- Header: Platform-Header
+    	- Request:
+        ```json
+        {
+          "id": "4675",
+          "code": "uAm-wlA6HKsuZsZYREZlgfkJzhR7ikG3",
+          "email ":"nimesh.aug11@gmail.com",
+          "password":"new_password"
+        }
+        ```
+        	
+        - Response: __EXCEPTIONED_GENERIC_STATUS_RESPONSE_FORMAT__
+        > __HTTP/1.1 200 OK__
+        ```json
+        {
+          "meta": "",
+          "data": {
+          "email ":"nimesh.aug11@gmail.com"
+          }
+        }
+        ```
+        
+        > __HTTP/1.1 404 Not Found__: Use Generic Response
+        > __HTTP/1.1 400 Bad Request__: 
+        If the user email and token are not correct
+        ```json
+        {
+        	"meta":"",
+        	"data":{
+        		"error_message": "Your email or token are invalid"
+        	}
+        }
+        ```
 
 #### Loggedin APIs
 
-14.1.
+14.
+    1.
+    	- API Name: Profile API
+    	- Status: Need to be discuss URL
+    	- URL: /user/123/profile/
+    	- Comment: This  belong to module User?
+    	- Module: User
+    	- Method: GET
+    	- Header: Loggedin-Platform-Header
+    	- Request: Query Params None
+    	- Response: __EXCEPTIONED_GENERIC_STATUS_RESPONSE_FORMAT__
+    	
+        > __HTTP/1.1 200 OK__
+        ```json
+        {
+          "meta": "",
+          "data": {
+            "customer_id": {
+              "value": 123,
+              "is_editable": false
+            },
+            "full_name": {
+              "value": "Nimesh Kiran Verma",
+              "is_editable": true
+            },
+            "mobile_number": {
+              "value": "9911616971",
+              "is_editable": true
+            },
+            "email": {
+              "value": "nimesh.aug11@gmail.com",
+              "is_editable": true
+            },
+            "city_id": {
+              "value": 1,
+              "is_editable": true
+            },
+            "class_id": {
+              "value": 1,
+              "is_editable": false
+            },
+            "school": {
+              "value": "St Xaviers Sr Sec School",
+              "is_editable": true
+            },
+            "profile_pic": {
+              "value": "https://9gag.com/gag/a5nEdzg",
+              "is_editable": true
+            }
+          }
+        }
+        ```
 
-	- API Name: Profile API
-	- Status: Need to be discuss URL
-	- URL: /user/123/profile/
-	- Comment: This  belong to module User?
-	- Module: User
-	- Method: GET
-	- Header: Loggedin-Platform-Header
-	- Request: Query Params None
-	- Response: __EXCEPTIONED_GENERIC_STATUS_RESPONSE_FORMAT__
-	
-> __HTTP/1.1 200 OK__
-```
-{
-  "meta": "",
-  "data": {
-    "customer_id": {
-      "value": 123,
-      "is_editable": false
-    },
-    "full_name": {
-      "value": "Nimesh Kiran Verma",
-      "is_editable": true
-    },
-    "mobile_number": {
-      "value": "9911616971",
-      "is_editable": true
-    },
-    "email": {
-      "value": "nimesh.aug11@gmail.com",
-      "is_editable": true
-    },
-    "city_id": {
-      "value": 1,
-      "is_editable": true
-    },
-    "class_id": {
-      "value": 1,
-      "is_editable": false
-    },
-    "school": {
-      "value": "St Xaviers Sr Sec School",
-      "is_editable": true
-    },
-    "profile_pic": {
-      "value": "https://9gag.com/gag/a5nEdzg",
-      "is_editable": true
-    }
-  }
-}
-```
+    2.
+    	- API Name: Profile API
+    	- Status: Need to be discuss URL
+    	- URL: /user/profile/
+    	- Comment: This  belong to module User?
+    	- Module: User
+    	- Method: POST
+    	- Header: Loggedin-Platform-Header
+    	- Request: 
+        ```json
+        {
+          "customer_id": 123,
+          "full_name": "Nimesh Kiran Verma",
+          "mobile_number": "9911616971",
+          "email": "nimesh.aug11@gmail.com",
+          "city_id": 1,
+          "class_id": 1,
+          "school": "St Xaviers Sr Sec School",
+          "profile_pic": "https://9gag.com/gag/a5nEdzg"
+        }
+        ```
 
-14.2.
-
-	- API Name: Profile API
-	- Status: Need to be discuss URL
-	- URL: /user/profile/
-	- Comment: This  belong to module User?
-	- Module: User
-	- Method: POST
-	- Header: Loggedin-Platform-Header
-	- Request: 
-```
-{
-  "customer_id": 123,
-  "full_name": "Nimesh Kiran Verma",
-  "mobile_number": "9911616971",
-  "email": "nimesh.aug11@gmail.com",
-  "city_id": 1,
-  "class_id": 1,
-  "school": "St Xaviers Sr Sec School",
-  "profile_pic": "https://9gag.com/gag/a5nEdzg"
-}
-```
-	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__
-```
-{
-  "meta": "",
-  "data": {
-    "customer_id": {
-      "value": 123,
-      "is_editable": false
-    },
-    "full_name": {
-      "value": "Nimesh Kiran Verma",
-      "is_editable": true
-    },
-    "mobile_number": {
-      "value": "9911616971",
-      "is_editable": true
-    },
-    "email": {
-      "value": "nimesh.aug11@gmail.com",
-      "is_editable": true
-    },
-    "city_id": {
-      "value": 1,
-      "is_editable": true
-    },
-    "class_id": {
-      "value": 1,
-      "is_editable": false
-    },
-    "school": {
-      "value": "St Xaviers Sr Sec School",
-      "is_editable": true
-    },
-    "profile_pic": {
-      "value": "https://9gag.com/gag/a5nEdzg",
-      "is_editable": true
-    }
-  }
-}
-```
+        - Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
+        > __HTTP/1.1 200 OK__
+        ```json
+        {
+          "meta": "",
+          "data": {
+            "customer_id": {
+              "value": 123,
+              "is_editable": false
+            },
+            "full_name": {
+              "value": "Nimesh Kiran Verma",
+              "is_editable": true
+            },
+            "mobile_number": {
+              "value": "9911616971",
+              "is_editable": true
+            },
+            "email": {
+              "value": "nimesh.aug11@gmail.com",
+              "is_editable": true
+            },
+            "city_id": {
+              "value": 1,
+              "is_editable": true
+            },
+            "class_id": {
+              "value": 1,
+              "is_editable": false
+            },
+            "school": {
+              "value": "St Xaviers Sr Sec School",
+              "is_editable": true
+            },
+            "profile_pic": {
+              "value": "https://9gag.com/gag/a5nEdzg",
+              "is_editable": true
+            }
+          }
+        }
+        ```
 
 15.
 	- API Name: Change Password API
 	- Status: Need to be discuss URL
 	- URL: /user/123/password/
-	- Comment: This  belong to module User?
 	- Module: User
 	- Method: POST
 	- Header: Loggedin-Platform-Header
 	- Request: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-```
-{
-    "customer_id": 123,
-    "old_password": "pass123",
-    "new_password": "newpass123"
-}
-```
+    ```json
+    {
+        "customer_id": 123,
+        "old_password": "pass123",
+        "new_password": "newpass123"
+    }
+    ```
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__
-```
-{
-  "meta": "",
-  "data": {}
-}
-```
+    > __HTTP/1.1 200 OK__
+    ```json
+    {
+      "meta": "",
+      "data": {}
+    }
+    ```
 
 16.
 	- API Name: Order API
@@ -1117,48 +1066,48 @@ If the user email and token are not correct
 	- Method: POST
 	- Header: Loggedin-Platform-Header
 	- Request: None
-Remark: If the customer has enrolled through the school the **amount** will be the price paid to the school otherwise it will be price they paid after applying both special offer and the coupon code to us without subtracting the wallet amount
+    - Remark: If the customer has enrolled through the school the **amount** will be the price paid to the  school otherwise it will be price they paid after applying both special offer and the coupon code to us without subtracting the wallet amount
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__
-```
-{
-  "meta": "",
-  "data": {
-    "orders": [
-      {
-        "order_no": "1",
-        "amount": 1444,
-        "details": "jvckdjsjvaxncs x",
-        "purchase_date": "20/11/2017"
-      },
-      {
-        "order_no": "1",
-        "amount": 1444,
-        "details": "jvckdjsjvaxncs x",
-        "purchase_date": "20/11/2017"
-      },
-      {
-        "order_no": "1",
-        "amount": 1444,
-        "details": "jvckdjsjvaxncs x",
-        "purchase_date": "20/11/2017"
-      },
-      {
-        "order_no": "1",
-        "amount": 1444,
-        "details": "jvckdjsjvaxncs x",
-        "purchase_date": "20/11/2017"
-      },
-      {
-        "order_no": "1",
-        "amount": 1444,
-        "details": "jvckdjsjvaxncs x",
-        "purchase_date": "20/11/2017"
+    > __HTTP/1.1 200 OK__
+    ```json
+    {
+      "meta": "",
+      "data": {
+        "orders": [
+          {
+            "order_no": "1",
+            "amount": 1444,
+            "details": "jvckdjsjvaxncs x",
+            "purchase_date": "20/11/2017"
+          },
+          {
+            "order_no": "1",
+            "amount": 1444,
+            "details": "jvckdjsjvaxncs x",
+            "purchase_date": "20/11/2017"
+          },
+          {
+            "order_no": "1",
+            "amount": 1444,
+            "details": "jvckdjsjvaxncs x",
+            "purchase_date": "20/11/2017"
+          },
+          {
+            "order_no": "1",
+            "amount": 1444,
+            "details": "jvckdjsjvaxncs x",
+            "purchase_date": "20/11/2017"
+          },
+          {
+            "order_no": "1",
+            "amount": 1444,
+            "details": "jvckdjsjvaxncs x",
+            "purchase_date": "20/11/2017"
+          }
+        ]
       }
-    ]
-  }
-}
-```
+    }
+    ```
 
 17.
 	- API Name: Refer API
@@ -1170,30 +1119,29 @@ Remark: If the customer has enrolled through the school the **amount** will be t
 	- Header: Loggedin-Platform-Header
 	- Request: Query Params None
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__
-```
-{
-	"meta": "",
-	"data": {
-		"referral_earnings": 100,
-		"referral_message": {
-			"email": {
-				"subject": "some text",
-				"body": "Hi - wanted to share this very interesting Logical Reasoning Competition designed by IIT-IIM alumni, to initiate kids into logical thinking.  I think it provides a great exposure to kids. %0aThe exam is designed to stimulate the analytical thinking in kids and is conducted for SrKG to Class 9 kids. For Sr KG and Grade 1 kids, their invigilators read and explain the question to kids.%0aYou could DOWNLOAD a FREE SAMPLE PAPER from the link below: https://www.logiqids.com/user/register?c=Nimesh773"
-			},
-			"facebook": {
-				"message": "https://www.facebook.com/v2.3/dialog/feed?app_id=1855999688021475&caption=Logiqids.com&description=%20Download%20Free%20Sample%20Paper%20for%20LogIQids%20Logical%20Reasoning%20Exam%20.&link=https://www.logiqids.com/user/register?c=Nimesh773&name=Must%20Try%20For%20Parents%20of%205%20to%2012%20Year%20Old%20Children!&picture=https://www.logiqids.com/images/LogIQids_FB_final1.png"
-			},
-			"sms": {
-				"message": "Hi - wanted to share this very interesting Logical Reasoning Competition designed by IIT-IIM alumni, to initiate kids into logical thinking.  I think it provides a great exposure to kids. %0aThe exam is designed to stimulate the analytical thinking in kids and is conducted for SrKG to Class 9 kids. For Sr KG and Grade 1 kids, their invigilators read and explain the question to kids.%0aYou could DOWNLOAD a FREE SAMPLE PAPER from the link below: https://www.logiqids.com/user/register?c=Nimesh773"
-			}
-		}
-	}
-}
-```
+    > __HTTP/1.1 200 OK__
+    ```json
+    {
+    	"meta": "",
+    	"data": {
+    		"referral_earnings": 100,
+    		"referral_message": {
+    			"email": {
+    				"subject": "some text",
+    				"body": "Hi - wanted to share this very interesting Logical Reasoning Competition designed by IIT-IIM alumni, to initiate kids into logical thinking.  I think it provides a great exposure to kids. %0aThe exam is designed to stimulate the analytical thinking in kids and is conducted for SrKG to Class 9 kids. For Sr KG and Grade 1 kids, their invigilators read and explain the question to kids.%0aYou could DOWNLOAD a FREE SAMPLE PAPER from the link below: https://www.logiqids.com/user/register?c=Nimesh773"
+    			},
+    			"facebook": {
+    				"message": "https://www.facebook.com/v2.3/dialog/feed?app_id=1855999688021475&caption=Logiqids.com&description=%20Download%20Free%20Sample%20Paper%20for%20LogIQids%20Logical%20Reasoning%20Exam%20.&link=https://www.logiqids.com/user/register?c=Nimesh773&name=Must%20Try%20For%20Parents%20of%205%20to%2012%20Year%20Old%20Children!&picture=https://www.logiqids.com/images/LogIQids_FB_final1.png"
+    			},
+    			"sms": {
+    				"message": "Hi - wanted to share this very interesting Logical Reasoning Competition designed by IIT-IIM alumni, to initiate kids into logical thinking.  I think it provides a great exposure to kids. %0aThe exam is designed to stimulate the analytical thinking in kids and is conducted for SrKG to Class 9 kids. For Sr KG and Grade 1 kids, their invigilators read and explain the question to kids.%0aYou could DOWNLOAD a FREE SAMPLE PAPER from the link below: https://www.logiqids.com/user/register?c=Nimesh773"
+    			}
+    		}
+    	}
+    }
+    ```
 
 18.
-	#CHECK_THIS
 	- API Name: Refer SMS API
 	- Status: Need to be discuss URL
 	- URL: /user/123/refer/getsms
@@ -1202,133 +1150,133 @@ Remark: If the customer has enrolled through the school the **amount** will be t
 	- Method: POST
 	- Header: Loggedin-Platform-Header
 	- Request:
-```
-{
-	"phone_number": 9999999999
-}
-```
-	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__
-```
-{
-	"meta": "",
-	"data": {
-		"sms_sent_success":true,
-		"message": "The refer link has been sent to"  
-	}
-}
-```
+    ```json
+    {
+    	"phone_number": 9999999999
+    }
+    ```
+	
+    - Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
+    > __HTTP/1.1 200 OK__
+    ```json
+    {
+    	"meta": "",
+    	"data": {
+    		"sms_sent_success":true,
+    		"message": "The refer link has been sent to"  
+    	}
+    }
+    ```
 
 19.
 	- API Name: User Account Info
 	- Status: Need to be discuss URL
 	- URL: /user/123/account/
-	- Comment: This  belong to module User?
 	- Module: User
 	- Method: GET
 	- Header: Loggedin-Platform-Header
 	- Request: 
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__
-```
-{
-  "meta": "",
-  "data": {
-    "wallet_balance":900,
-    "city_id": 1,
-    "products": {
-      "test": [
-        {
-          "package_id": 123,
-          "name": "Mumbai 23 Dec Test",
-          "subscription_date": "dd/mm/yyyy",
-          "active": true
-        },
-        {
-          "package_id": 124,
-          "name": "Mumbai 29 Dec Test",
-          "subscription_date": "dd/mm/yyyy",
-          "active": false
+    > __HTTP/1.1 200 OK__
+    ```json
+    {
+      "meta": "",
+      "data": {
+        "wallet_balance":900,
+        "city_id": 1,
+        "products": {
+          "test": [
+            {
+              "package_id": 123,
+              "name": "Mumbai 23 Dec Test",
+              "subscription_date": "dd/mm/yyyy",
+              "active": true
+            },
+            {
+              "package_id": 124,
+              "name": "Mumbai 29 Dec Test",
+              "subscription_date": "dd/mm/yyyy",
+              "active": false
+            }
+          ],
+          "content": [
+            {
+              "package_id": 123,
+              "name": "Annual Content",
+              "subscription_date": "dd/mm/yyyy"
+            },
+            {
+              "package_id": 124,
+              "name": "Summer Content",
+              "subscription_date": "dd/mm/yyyy",
+              "active": false
+            }
+          ]
         }
-      ],
-      "content": [
-        {
-          "package_id": 123,
-          "name": "Annual Content",
-          "subscription_date": "dd/mm/yyyy"
-        },
-        {
-          "package_id": 124,
-          "name": "Summer Content",
-          "subscription_date": "dd/mm/yyyy",
-          "active": false
-        }
-      ]
+      }
     }
-  }
-}
-```
+    ```
 
 20.
 	- API Name: Mega Menu
 	- Status: Need to be discuss URL
 	- URL: /user/id/menu
-	- Comment: This  belong to module User or Common?
 	- Module: User
 	- Method: GET
 	- Header: Loggedin-Platform-Header
 	- Request:
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-```
-{
-  "meta": "",
-  "data": [
-      {
-        "name": "Home",
-        "url": "http://…..",
-        "active": true,
-        "children": []
-      },
-      {
-        "name": "Test",
-        "url": "http://…..",
-        "active": true,
-        "children": [
+    ```json
+    {
+      "meta": "",
+      "data": [
           {
-            "name": "Sample Paper",
+            "name": "Home",
             "url": "http://…..",
             "active": true,
             "children": []
           },
           {
-            "name": "Topic Notes",
+            "name": "Test",
+            "url": "http://…..",
+            "active": true,
+            "children": [
+              {
+                "name": "Sample Paper",
+                "url": "http://…..",
+                "active": true,
+                "children": []
+              },
+              {
+                "name": "Topic Notes",
+                "url": "http://…..",
+                "active": true,
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Content",
+            "url": "http://…..",
+            "active": true,
+            "children": []
+          },
+          {
+            "name": "Account",
+            "url": "http://…..",
+            "active": true,
+            "children": []
+          },
+            {
+            "name": "Badges",
             "url": "http://…..",
             "active": true,
             "children": []
           }
         ]
-      },
-      {
-        "name": "Content",
-        "url": "http://…..",
-        "active": true,
-        "children": []
-      },
-      {
-        "name": "Account",
-        "url": "http://…..",
-        "active": true,
-        "children": []
-      },
-        {
-        "name": "Badges",
-        "url": "http://…..",
-        "active": true,
-        "children": []
-      }
-    ]
-}
-```
+    }
+    ```
+
 21.
 	- API Name: Order Review API
 	- Status: Need to be discuss URL
@@ -1338,79 +1286,81 @@ Remark: If the customer has enrolled through the school the **amount** will be t
 	- Method: POST
 	- Header: Loggedin-Platform-Header
 	- Request: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-```
-{
-  "package_ids": [
-  23,
-  24],
-}
-```
-	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-```
-{
-  "meta": "",
-  "data": {
-    "order_id": 123,
-    "wallet_balance": 200,
-    "wallet_deductable": 200,
-    "discount": 200,
-    "price": 1450,
-    "payable_price": 1250,
-    "final_price": 1250,
-    "package_data": [
-      {
-        "id": 23,
-        "image_url":"jvhdsxkddsx",
-        "name": "LogIQids Logical Reasoning Exam",
-        "class_name": "Class 5",
-        "academic_session": "2017-18",
-        "info": "Mumbai",
-        "price": 550
-      },
-      {
-        "id": 24,
-        "image_url":"jvhdsxkddsx",
-        "name": "Content Package",
-        "class_name": "Class 5",
-        "academic_session": "2017-18",
-        "info": "Package Valid upto Dec 31 2017",
-        "price": 900
+    ```json
+    {
+      "package_ids": [
+      23,
+      24],
+    }
+    ```
+	
+    - Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
+    ```json
+    {
+      "meta": "",
+      "data": {
+        "order_id": 123,
+        "wallet_balance": 200,
+        "wallet_deductable": 200,
+        "discount": 200,
+        "price": 1450,
+        "payable_price": 1250,
+        "final_price": 1250,
+        "package_data": [
+          {
+            "id": 23,
+            "image_url":"jvhdsxkddsx",
+            "name": "LogIQids Logical Reasoning Exam",
+            "class_name": "Class 5",
+            "academic_session": "2017-18",
+            "info": "Mumbai",
+            "price": 550
+          },
+          {
+            "id": 24,
+            "image_url":"jvhdsxkddsx",
+            "name": "Content Package",
+            "class_name": "Class 5",
+            "academic_session": "2017-18",
+            "info": "Package Valid upto Dec 31 2017",
+            "price": 900
+          }
+        ]
       }
-    ]
-  }
-}
-```
- 
+    }
+    ```
+
 22.
-	- API Name: Discount API
+    - API Name: Discount API
 	- URL: /user/123/order/discount/
 	- Module: Order
 	- Method: POST
 	- Header: Loggedin-Platform-Header
 	- Request:
-```
-{
-  "order_id": 123,
-  "Coupon_code": LOGIQ100,
-  "wallet_status": True or False
-}
-```
+    ```json
+    {
+      "order_id": 123,
+      "Coupon_code": LOGIQ100,
+      "wallet_status": True or False
+    }
+    ```
+
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-```
-{
-  "meta": "",
-  "data": {
-    "discount": 200,
-    "is_coupon_valid": true or false,
-    "coupon_deductable": 200,
-    "wallet_deductable": 200,
-    "final_price": 200,   
-  }
-}
-```
+    ```json
+    {
+      "meta": "",
+      "data": {
+        "discount": 200,
+        "is_coupon_valid": true or false,
+        "coupon_deductable": 200,
+        "wallet_deductable": 200,
+        "final_price": 200,   
+      }
+    }
+    ```
 
 23. 
-	- API Name: Checkout API
+    - API Name: Checkout API
 	- Status: Need to be discuss URL
 	- URL: /user/123/checkout/
 	- Comment: This  belong to module Order?
@@ -1418,23 +1368,24 @@ Remark: If the customer has enrolled through the school the **amount** will be t
 	- Method: POST
 	- Header: Loggedin-Platform-Header
 	- Request:
-```
-{
-  "order_id": 123,
-  "coupon_code": "LOGIQ100",
-  "wallet_applied":true
-}
-```
-	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-```
-{
-  "meta": "",
-  "data": {
-    "order_id": 1,
-    "final_price": 1212
-  }
-}
-```
+    ```json
+    {
+      "order_id": 123,
+      "coupon_code": "LOGIQ100",
+      "wallet_applied":true
+    }
+    ```
+	
+    - Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
+    ```json
+    {
+      "meta": "",
+      "data": {
+        "order_id": 1,
+        "final_price": 1212
+      }
+    }
+    ```
 
 24. 
 	- API Name: Payment Details API
@@ -1445,96 +1396,23 @@ Remark: If the customer has enrolled through the school the **amount** will be t
 	- Method: POST
 	- Header: Loggedin-Platform-Header
 	- Request: 
-```
-{
-  "order_id": 123
-  "tax_id": 1
-}
-```
-	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-```
-{
-  "meta": "",
-  "data": {
-    "order_id": 1,
-    "final_price": 1212
-  }
-}
-```
-25.
-	- API Name: Sample Paper Download Leads API
-	- Status: Need to be discuss URL
-	- URL: /sample_paper/
-	- Module: Product
-	- Method: POST
-	- Header: Platform-Header
-	- Request:
-``` 
-{
-  "full_name": "Nimesh Kiran Verma",
-  "mobile_number": "9911616971",
-  "email": "nimesh.aug11@gmail.com",
-  "city_name": "Mumbai",
-  "class_id": 1,
-  "school": "St Xaviers Sr Sec School",
-}
-``` 
-	- Response: __EXCEPTIONED_GENERIC_STATUS_RESPONSE_FORMAT__
-> __HTTP/1.1 200 OK__
-```
-{
-  "meta": "",
-  "data": {
-    "sample_test_paper": "PDF File link", 
-}
-```
+    ```json
+    {
+      "order_id": 123
+      "tax_id": 1
+    }
+    ```
 
-
-====================================================================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    - Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
+    ```json
+    {
+      "meta": "",
+      "data": {
+        "order_id": 1,
+        "final_price": 1212
+      }
+    }
+    ```
 
 20
 	- API Name: Weekly leaderboard API
@@ -2297,7 +2175,7 @@ pic_d
 }
 
 
-33
+33.
 	- API Name: Past Test Detailed Analysis API
 	- Status: Need to be discuss URL
 	- URL: /test/<test_id>/analysis/
@@ -2305,6 +2183,7 @@ pic_d
 	- Header: Loggedin-Platform-Header
 	- Request: None
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
+```json
 {
   "meta": "",
   "data": {
@@ -2573,9 +2452,9 @@ pic_d
 
   }
 }
+```
 
-
-31
+31.
 	- API Name: Sample Paper Analysis API
 	- Status: Need to be discuss URL
 	- URL: /content/package_subscribed/<package_subscribtion_id>/analysis/
@@ -3074,7 +2953,7 @@ worksheet_id can be latest
 	- Header: Loggedin-Platform-Header
 	- Request: None
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-```javascript
+```json
 {
   "meta": "",
   "data": {
@@ -3112,7 +2991,7 @@ worksheet_id can be latest
 	- Header: Loggedin-Platform-Header
 	- Request: None
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-```javascript
+```json
 {
   "meta": "",
   "data": {}
@@ -3127,7 +3006,7 @@ worksheet_id can be latest
 	- Header: Loggedin-Platform-Header
 	- Request: None
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-```javascript
+```json
 {
   "meta": "",
   "data": {
@@ -3169,13 +3048,13 @@ worksheet_id can be latest
 	- Method: POST
 	- Header: Loggedin-Platform-Header
 	- Request: 
-```javascript
+```json
 {
   "answer_id":"a"
 }
 ```
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-```javascript
+```json
 {
   "meta": "",
   "data": {}
@@ -3190,7 +3069,7 @@ worksheet_id can be latest
 	- Header: Loggedin-Platform-Header
 	- Request: None
 	- Response: __ALL_GENERIC_STATUS_RESPONSE_FORMAT__
-```javascript
+```json
 {
   "meta": "",
   "data": {
